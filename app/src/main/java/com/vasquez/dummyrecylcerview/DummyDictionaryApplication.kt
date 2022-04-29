@@ -12,4 +12,5 @@ class DummyDictionaryApplication : Application() {
         DictionaryRepository(wordDao(), synonymDao(), antonymDao())
     }
 
+
 }

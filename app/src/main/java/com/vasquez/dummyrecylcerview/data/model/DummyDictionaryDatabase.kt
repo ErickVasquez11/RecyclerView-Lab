@@ -13,6 +13,7 @@ import com.vasquez.dummyrecylcerview.data.model.dao.WordDao
     version = 1,
     exportSchema = false
 )
+
 abstract class DummyDictionaryDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
     abstract fun synonymDao(): SynonymDao
