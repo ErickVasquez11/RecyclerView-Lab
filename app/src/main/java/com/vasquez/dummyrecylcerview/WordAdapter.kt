@@ -5,15 +5,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.vasquez.dummyrecylcerview.databinding.ItemWordBinding
-import com.vasquez.dummyrecylcerview.model.Word
+import com.vasquez.dummyrecylcerview.data.model.Word
 
 
 class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
-    private var words: List<Word>? = null
-    fun setData(data: List<Word>) {
-        words = data
-        notifyDataSetChanged()
-    }
 
     inner class WordViewHolder(private val binding: ItemWordBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -39,4 +34,10 @@ class WordAdapter : RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
         }
     }
     override fun getItemCount() = words?.size ?: 0
+
+    private var words: List<Word>? = null
+    fun setData(data: List<Word>) {
+        words = data
+        notifyDataSetChanged()
+    }
 }

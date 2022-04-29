@@ -8,17 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.vasquez.dummyrecylcerview.databinding.FragmentWordListBinding
-
-import com.vasquez.dummyrecylcerview.model.Word
-import com.vasquez.dummyrecylcerview.repository.DictionaryRepository
-
+import com.vasquez.dummyrecylcerview.data.model.Word
 
 class WordListFragment : Fragment() {
     private val viewModelFactory by lazy {
-        val repository = DictionaryRepository()
-        WordViewModelFactory(repository)
+        val application = requireActivity().application as DummyDictionaryApplication
+        WordViewModelFactory(application.getDictionaryRepository())
     }
-
     private val viewModel: WorldViewModel by viewModels {
         viewModelFactory
     }
@@ -41,13 +37,9 @@ class WordListFragment : Fragment() {
         wordListRecyclerView.apply {
             adapter = wordAdapter
         }
-
-        binding.btnAddWord.setOnClickListener {
-            viewModel.onAddWord(Word("Nota","Prueba, Exitosa"))
-
-        }
         viewModel.words.observe(viewLifecycleOwner) { data ->
             wordAdapter.setData(data)
         }
     }
+
 }
